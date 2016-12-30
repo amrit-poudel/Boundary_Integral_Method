@@ -1,0 +1,15 @@
+
+# Material specification
+MATERIAL ALUMINUM
+  wp    = 1.747e16; #2.32e16;
+  gamma = 7.596e13; # 9.04e14;
+  Eps(w) = 1 - wp^2/(w*(w+i*gamma));
+ENDMATERIAL
+
+
+
+# Spherical geometry
+OBJECT Sphere
+	MESHFILE ./Sphere.msh
+	MATERIAL SILVER
+ENDOBJECT
