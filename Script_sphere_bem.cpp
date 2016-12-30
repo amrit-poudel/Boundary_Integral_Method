@@ -99,16 +99,16 @@ int main(int argc, char **argv) {
 
 
   // Start time
-	time_t current_time = time(NULL) ;
-	char* pcurrent_time_string ;
+  time_t current_time = time(NULL) ;
+  char* pcurrent_time_string ;
 	
-	// Convert to local time format and print the string
-	pcurrent_time_string = ctime(&current_time) ;
-	cout << "START TIME: " << pcurrent_time_string << endl ;
+  // Convert to local time format and print the string
+  pcurrent_time_string = ctime(&current_time) ;
+  cout << "START TIME: " << pcurrent_time_string << endl ;
 
     
     
-	  // Radial distances from the surface of the sphere
+  // Radial distances from the surface of the sphere
     int n;
     int dlen = 10; 
     double dstep = 1.0*a/a; 
