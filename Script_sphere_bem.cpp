@@ -148,8 +148,8 @@ int main(int argc, char **argv) {
 	
 	
 	// Store temporary E- and H-fields in array
-	cdouble EH[6];
-	cdouble E0H0[6];
+	cdouble EH[6]; // total fields
+	cdouble EsHs[6]; // scatterred fields
 	
 
 
@@ -196,19 +196,19 @@ int main(int argc, char **argv) {
 		
 		
 		// Obtain E- and H-fields. These fields will be used to compute dyadic greens function
-		Geom->GetFields(0, KN, static_cast<cdouble>(omega), OLoc, E0H0);
+		Geom->GetFields(0, KN, static_cast<cdouble>(omega), OLoc, EsHs);
 		Geom->GetFields(PS, KN, static_cast<cdouble>(omega), OLoc, EH);
 		// Using PS gives total field (scattered + incident). Replace PS by 0 to get scattered field only
 
 		
 
 		// Store E-fields in HMatrix (H-fields are not stored)
-		Fx0Matrix.SetEntry(n, 1, E0H0[0]);
-		Fy0Matrix.SetEntry(n, 1, E0H0[1]);
-		Fz0Matrix.SetEntry(n, 1, E0H0[2]);
-		FxMatrix.SetEntry(n, 1, EH[0]);
-		FyMatrix.SetEntry(n, 1, EH[1]);
-		FzMatrix.SetEntry(n, 1, EH[2]);
+		Fx0Matrix.SetEntry(n, 0, EH[0] - EsHs[0]);
+		Fy0Matrix.SetEntry(n, 0, EH[1] - EsHs[1]);
+		Fz0Matrix.SetEntry(n, 0, EH[2] - EsHs[2]);
+		FxMatrix.SetEntry(n, 0, EH[0]);
+		FyMatrix.SetEntry(n, 0, EH[1]);
+		FzMatrix.SetEntry(n, 0, EH[2]);
 
 
 		// Update source/observation location
